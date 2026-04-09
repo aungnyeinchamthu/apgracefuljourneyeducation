@@ -1,29 +1,25 @@
-name: Deploy to Hostinger via FTP
+name: Deploy to Hostinger
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 jobs:
-  web-deploy:
-    name: Deploy
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Install lftp
-        run: sudo apt-get update && sudo apt-get install -y lftp
-      - name: Deploy to Hostinger
+      - uses: actions/checkout@v4
+      - name: Deploy via lftp
         run: |
-          lftp -u "${{secrets.FTP_USERNAME}}","${{secrets.FTP_PASSWORD}}" ${{secrets.FTP_HOST}} <<EOF
-          set ssl:verify-certificate no
-          set ftp:ssl-allow yes
-          set ftp:ssl-protect-data yes
-          set ftp:ssl-protect-fxp yes
-          mirror -R --delete --verbose \
-            --exclude-glob .git* \
-            --exclude-glob .github \
-            --exclude-glob .gitignore \
-            --exclude-glob README.md \
-            --exclude-glob AGENTS.md \
-            ./ /public_html/
-          bye
-          EOF
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp
+          lftp -c "
+            set ftp:ssl-allow no
+            open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }}
+            mirror -R --delete --verbose \
+              --exclude-glob .git* \
+              --exclude-glob .github \
+              --exclude-glob .gitignore \
+              --exclude-glob README.md \
+              --exclude-glob AGENTS.md \
+              ./ /public_html/
+          "
