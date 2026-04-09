@@ -18,9 +18,11 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
-          server-dir: /
+          server-dir: /home/u491050298/domains/apgracefuljourneyeducation.com/public_html/
           exclude: |
             .git*
             .github/**
             README.md
             AGENTS.md
+            .DS_Store
+            .DS_Store
