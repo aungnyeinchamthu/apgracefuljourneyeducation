@@ -5,24 +5,27 @@ on:
     branches: [main]
 
 jobs:
-  deploy:
+  web-deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Sync files to Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
           local-dir: ./
           server-dir: /home/u491050298/domains/apgracefuljourneyeducation.com/public_html/
           exclude: |
-            .git*
-            .github/**
-            README.md
-            AGENTS.md
-            .DS_Store
-            .DS_Store
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/README.md
+            **/AGENTS.md
+            **/.DS_Store
