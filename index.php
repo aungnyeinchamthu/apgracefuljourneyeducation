@@ -612,6 +612,8 @@ function asset_exists(string $path): bool {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= htmlspecialchars($companyName) ?> | Overseas Education Consultancy</title>
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="images/logo/logo1.jpeg" type="images/jpeg">
     <meta name="description" content="<?= htmlspecialchars($companyName) ?> helps students access international education opportunities through transparent counselling, university application support, and visa guidance.">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
@@ -1416,6 +1418,152 @@ body{
     font-size:.94rem;
     line-height:1.6;
 }
+.contact-card-modern {
+    background: #f8f8f8;
+    border-radius: 32px;
+    padding: 34px 32px 26px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.contact-card-head {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.contact-icon {
+    width: 88px;
+    height: 88px;
+    border-radius: 24px;
+    background: #f4ebed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.contact-icon i {
+    font-size: 2rem;
+    color: #df3b3b;
+}
+
+.contact-title {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #324d7d;
+    line-height: 1.2;
+}
+
+.contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+.contact-item:last-child {
+    border-bottom: none;
+}
+
+.contact-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    min-width: 0;
+    flex: 1;
+}
+
+.contact-item-icon {
+    font-size: 1.15rem;
+    color: #6f6f6f;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.contact-value {
+    color: #6b6b6b;
+    font-size: 1.2rem;
+    line-height: 1.55;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+.email-text {
+    max-width: 100%;
+}
+
+.copy-btn {
+    width: 42px;
+    height: 42px;
+    border: none;
+    background: transparent;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s ease, transform 0.2s ease;
+    margin-top: 2px;
+}
+
+.copy-btn:hover {
+    background: rgba(50, 77, 125, 0.08);
+}
+
+.copy-btn:active {
+    transform: scale(0.95);
+}
+
+.copy-icon {
+    font-size: 1.2rem;
+    color: #7a7a7a;
+    transition: 0.2s ease;
+}
+
+.copy-message {
+    display: block;
+    margin-top: 14px;
+    font-size: 0.95rem;
+    color: #1d9d57;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.copy-message.show {
+    opacity: 1;
+}
+
+@media (max-width: 576px) {
+    .contact-card-modern {
+        padding: 24px 20px;
+        border-radius: 24px;
+    }
+
+    .contact-icon {
+        width: 68px;
+        height: 68px;
+        border-radius: 18px;
+    }
+
+    .contact-title {
+        font-size: 1.55rem;
+    }
+
+    .contact-value {
+        font-size: 1rem;
+    }
+}
 
 /* responsive */
 @media (max-width:991.98px){
@@ -2118,6 +2266,19 @@ body{
 @media (max-width:767.98px){
     .hero h1{
         font-size:2.4rem;
+        padding-left:1rem;
+    }
+    .hero p{
+        padding-left:1rem;
+    }
+    .hero .hero-badge{
+        padding-left:1rem;
+    }
+    .hero .hero-actions{
+        padding-left:1rem;
+    }
+    .hero .feature-pills{
+        padding-left:1rem;
     }
 
     .feedback-award-section{
@@ -2256,7 +2417,7 @@ body{
                     <a href="#partnership" class="btn btn-outline-light-soft">Explore University Partners</a>
                 </div>
 
-                <div class="mt-4">
+                <div class="feature-pills mt-4">
                     <span class="feature-pill"><i class="bi bi-check-circle-fill text-success"></i> Free School Application Processing</span>
                     <span class="feature-pill"><i class="bi bi-check-circle-fill text-success"></i> Free Visa Process Guidance</span>
                     <!-- <span class="feature-pill"><i class="bi bi-globe2 text-primary"></i> Study opportunities across 18 countries</span> -->
@@ -2330,7 +2491,7 @@ body{
     <div class="container">
         <div class="section-title">
             <span class="eyebrow">About Us</span>
-            <h2>Building trusted international education pathways for students.</h2>
+            <h2>Building Trusted International Education Pathways for Students.</h2>
             <p>AP Graceful Journey Limited combines transparent counselling, professional application support, and a student-first approach to guide every learner toward the right global opportunity.</p>
         </div>
 
@@ -2378,7 +2539,7 @@ body{
     <div class="container">
         <div class="section-title">
             <span class="eyebrow">Vision, Mission & Values</span>
-            <h2>A strong purpose behind every student journey.</h2>
+            <h2>A Strong Purpose Behind Every Student Journey.</h2>
             <p>Our vision, mission, and core values guide how we counsel students, manage applications, and build long-term educational partnerships.</p>
         </div>
 
@@ -2440,7 +2601,7 @@ body{
     <div class="container">
         <div class="section-title">
             <span class="eyebrow">Leadership Team</span>
-            <h2>Experienced leaders guiding the company vision.</h2>
+            <h2>Experienced Leaders Guiding the Company Vision.</h2>
             <p>Our leadership team brings academic, management, finance, and operational experience to support students with trustworthy and professional consultancy services.</p>
         </div>
 
@@ -2471,7 +2632,7 @@ body{
     <div class="container">
         <div class="section-title">
             <span class="eyebrow">Study Destination Countries</span>
-            <h2>Explore exciting study destinations around the world.</h2>
+            <h2>Explore Exciting Study Destinations Around the World.</h2>
             <p>Students can explore programs, institutions, and pathways across multiple international destinations with the support of AP Graceful Journey Limited.</p>
         </div>
 
@@ -2494,7 +2655,7 @@ body{
     <div class="container">
         <div class="section-title">
             <span class="eyebrow">Core Services</span>
-            <h2>Complete support from initial counselling to final departure.</h2>
+            <h2>Complete Support from Initial Counselling to Final Departure.</h2>
             <p>We deliver structured support that helps students make confident decisions, prepare strong applications, and move forward with clarity.</p>
         </div>
 
@@ -2521,7 +2682,7 @@ body{
     <div class="container">
         <div class="section-title">
             <span class="eyebrow">Partnership Universities</span>
-            <h2>Partnering with trusted academic institutions in key destinations.</h2>
+            <h2>Partnering with Trusted Academic Institutions in Key Destinations.</h2>
             <p>The company profile highlights partner universities and institutions across multiple countries, along with a broad range of destination options for students.</p>
         </div>
 
@@ -2543,9 +2704,8 @@ body{
 
                     <?php if ($country === 'Singapore'): ?>
                         <li class="nav-item partnership-download-wrap">
-                            <a href="http://apgracefuljourneyeducation.com/documents/University List.docx"
-                               class="partnership-download-btn"
-                               download>
+                            <a href="download-university-list.php"
+                            class="partnership-download-btn">
                                 <i class="bi bi-download me-2"></i>
                                 Download All University List
                             </a>
@@ -2716,7 +2876,7 @@ body{
     <div class="container">
         <div class="section-title">
             <span class="eyebrow">Contact Us</span>
-            <h2>Let’s start your study abroad journey</h2>
+            <h2>Let’s Start Your Study Abroad Journey</h2>
             <p>Connect with AP Graceful Journey Education for counselling, application support, scholarship guidance, and destination advice.</p>
         </div>
 
@@ -2737,12 +2897,53 @@ body{
                     <div class="col-md-12">
                         <div class="contact-card contact-card-modern">
                             <div class="contact-card-head">
-                                <div class="contact-icon"><i class="bi bi-envelope-paper"></i></div>
+                                <div class="contact-icon">
+                                    <i class="bi bi-envelope-paper"></i>
+                                </div>
                                 <h4 class="contact-title">Contact Details</h4>
                             </div>
-                            <p class="contact-text mb-0"><a href="<?= htmlspecialchars($contact['email']) ?>" target="_blank" class="text-decoration-none text-muted"><i class="bi bi-envelope"></i><span> <?= htmlspecialchars($contact['email']) ?></span></a></p>
-                            <p class="contact-text mb-0"><a href="<?= htmlspecialchars($contact['phone']) ?>" target="_blank" class="text-decoration-none text-muted"><i class="bi bi-phone"></i><span> <?= htmlspecialchars($contact['phone']) ?></span></a></p>
-                            <p class="contact-text mb-0"><a href="<?= htmlspecialchars($contact['phone2']) ?>" target="_blank" class="text-decoration-none text-muted"><i class="bi bi-phone"></i><span> <?= htmlspecialchars($contact['phone2']) ?></span></a></p>
+
+                            <div class="contact-list">
+                                <div class="contact-item copy-contact" 
+                                    data-copy="<?= htmlspecialchars($contact['email']) ?>" 
+                                    data-label="Email">
+                                    <div class="contact-left">
+                                        <i class="bi bi-envelope contact-item-icon"></i>
+                                        <span class="contact-value email-text"><?= htmlspecialchars($contact['email']) ?></span>
+                                    </div>
+                                    <button type="button" class="copy-btn" aria-label="Copy email">
+                                        <i class="bi bi-copy copy-icon"></i>
+                                    </button>
+                                </div>
+
+                                <div class="contact-item copy-contact" 
+                                    data-copy="<?= htmlspecialchars($contact['phone']) ?>" 
+                                    data-label="Phone number">
+                                    <div class="contact-left">
+                                        <i class="bi bi-phone contact-item-icon"></i>
+                                        <span class="contact-value"><?= htmlspecialchars($contact['phone']) ?></span>
+                                    </div>
+                                    <button type="button" class="copy-btn" aria-label="Copy phone number">
+                                        <i class="bi bi-copy copy-icon"></i>
+                                    </button>
+                                </div>
+
+                                <?php if (!empty($contact['phone2'])): ?>
+                                <div class="contact-item copy-contact" 
+                                    data-copy="<?= htmlspecialchars($contact['phone2']) ?>" 
+                                    data-label="Phone number">
+                                    <div class="contact-left">
+                                        <i class="bi bi-phone contact-item-icon"></i>
+                                        <span class="contact-value"><?= htmlspecialchars($contact['phone2']) ?></span>
+                                    </div>
+                                    <button type="button" class="copy-btn" aria-label="Copy second phone number">
+                                        <i class="bi bi-copy copy-icon"></i>
+                                    </button>
+                                </div>
+                                <?php endif; ?>
+                            </div>
+
+                            <small id="copy-message" class="copy-message"></small>
                         </div>
                     </div>
 
@@ -2848,7 +3049,7 @@ body{
 
 <footer class="footer">
     <div class="container">
-        © <?= $year ?> <?= htmlspecialchars($companyName) ?>. All Rights Reserved. developed by AggiesDEV.
+        &copy;<?php echo date("Y"); ?> <?= htmlspecialchars($companyName) ?>. All Rights Reserved. developed by AggiesDEV.
     </div>
 </footer>
 
@@ -2860,6 +3061,42 @@ document.querySelectorAll('.navbar .nav-link').forEach(function(link) {
         if (window.innerWidth < 992 && navbarMenu.classList.contains('show')) {
             new bootstrap.Collapse(navbarMenu, { toggle: true });
         }
+    });
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const contactItems = document.querySelectorAll(".copy-contact");
+    const copyMessage = document.getElementById("copy-message");
+
+    contactItems.forEach(item => {
+        item.addEventListener("click", function () {
+            const textToCopy = this.getAttribute("data-copy");
+            const label = this.getAttribute("data-label");
+            const icon = this.querySelector(".copy-icon");
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                document.querySelectorAll(".copy-icon").forEach(i => {
+                    i.classList.remove("bi-check2");
+                    i.classList.add("bi-copy");
+                    i.style.color = "#7a7a7a";
+                });
+
+                icon.classList.remove("bi-copy");
+                icon.classList.add("bi-check2");
+                icon.style.color = "#1d9d57";
+
+                copyMessage.textContent = label + " copied to clipboard!";
+                copyMessage.classList.add("show");
+
+                setTimeout(() => {
+                    icon.classList.remove("bi-check2");
+                    icon.classList.add("bi-copy");
+                    icon.style.color = "#7a7a7a";
+                    copyMessage.classList.remove("show");
+                }, 1800);
+            });
+        });
     });
 });
 </script>
