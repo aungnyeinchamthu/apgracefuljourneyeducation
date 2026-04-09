@@ -9,20 +9,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Sync files to Hostinger
-        uses: SamKirkland/FTP-Deploy-Action@master
-        with:
-          server: ${{secrets.FTP_HOST}}
-          username: ${{secrets.FTP_USERNAME}}
-          password: ${{secrets.FTP_PASSWORD}}
-          protocol: ftps
-          port: 21
-          local-dir: ./
-          server-dir: /home/u491050298/domains/apgracefuljourneyeducation.com/public_html/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github/**
-            **/README.md
-            **/AGENTS.md
-            **/.DS_Store
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+      - name: Deploy to Hostinger
+        run: |
+          lftp -u "${{secrets.FTP_USERNAME}}","${{secrets.FTP_PASSWORD}}" ${{secrets.FTP_HOST}} <<EOF
+          set ssl:verify-certificate no
+          set ftp:ssl-allow yes
+          set ftp:ssl-protect-data yes
+          set ftp:ssl-protect-fxp yes
+          mirror -R --delete --verbose \
+            --exclude-glob .git* \
+            --exclude-glob .github \
+            --exclude-glob .gitignore \
+            --exclude-glob README.md \
+            --exclude-glob AGENTS.md \
+            ./ /public_html/
+          bye
+          EOF
