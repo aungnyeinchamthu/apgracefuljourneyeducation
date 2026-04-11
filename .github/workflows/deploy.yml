@@ -1,7 +1,20 @@
-name: Deploy
-on: push
+name: Deploy to Hostinger FTP
+on:
+  push:
+    branches:
+      - main
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: echo hello
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+      - name: Deploy to Hostinger
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          lftp -c "open -u ${FTP_USER},${FTP_PASS} ${FTP_HOST}; mirror -R --verbose --parallel=2 ./ ./"
