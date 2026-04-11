@@ -10,9 +10,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Test FTP connection
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq lftp
-          echo "Testing FTP connection..."
-          lftp -c "open -u u491050298.apgracefulgit,Asdfjkl;753 145.79.30.51; ls"
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+      - name: Check lftp version
+        run: lftp --version
+      - name: Test basic command
+        run: echo "Testing" && sleep 5 && echo "Done"
