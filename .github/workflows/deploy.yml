@@ -6,13 +6,17 @@ on:
 jobs:
   deploy:
     name: Deploy to Server
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Install lftp
         run: sudo apt-get update && sudo apt-get install -y lftp
-      - name: Check lftp version
-        run: lftp --version
-      - name: Test basic command
-        run: echo "Testing" && sleep 5 && echo "Done"
+      - name: Deploy via FTP
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          echo "Connecting to $FTP_HOST"
+          lftp -c "open -u ${FTP_USER},${FTP_PASS} ${FTP_HOST}; ls"
