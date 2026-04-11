@@ -612,8 +612,12 @@ function asset_exists(string $path): bool {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= htmlspecialchars($companyName) ?> | Overseas Education Consultancy</title>
-    <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="images/logo/logo1.jpeg" type="images/jpeg">
+    <!-- fix favicon icon -->
+    <link rel="icon" href="/images/logo/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo/apple-touch-icon.png">
+    <link rel="manifest" href="/images/logo/site.webmanifest">
     <meta name="description" content="<?= htmlspecialchars($companyName) ?> helps students access international education opportunities through transparent counselling, university application support, and visa guidance.">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
