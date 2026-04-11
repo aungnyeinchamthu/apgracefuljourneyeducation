@@ -1,22 +1,32 @@
-name: Auto Deploy to Hostinger via SSH
-
+name: Deploy to Hostinger FTP
 on:
   push:
     branches:
       - main
-
 jobs:
   deploy:
     name: Deploy to Server
     runs-on: ubuntu-latest
     steps:
-      - name: Execute remote git pull
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: 145.79.30.51
-          username: u491050298
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: 65002
-          script: |
-            cd domains/apgracefuljourneyeducation.com/public_html
-            git pull origin main
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup lftp
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp
+      - name: Deploy via FTP
+        run: |
+          lftp -c "
+            set ftp:ssl-allow no
+            set ftp:force-password yes
+            open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }}
+            mirror -R --verbose \
+              --exclude-glob .git \
+              --exclude-glob .github \
+              --exclude-glob .gitignore \
+              --exclude-glob README.md \
+              --exclude-glob AGENTS.md \
+              --exclude-glob .DS_Store \
+              --exclude-glob '*.md' \
+              ./ ./
+          "
