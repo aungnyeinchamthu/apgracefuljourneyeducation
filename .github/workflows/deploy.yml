@@ -20,9 +20,11 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp
+          protocol: ftps
           exclude: |
-            .git/**
+            **/.git*
+            **/.git*/**
             .github/**
             .gitignore
             README.md
+            **/.DS_Store
