@@ -1,0 +1,2 @@
+# Hide repo/internal files from the public site
+RedirectMatch 404 ^/(\.git.*|\.github.*|README\.md)$
