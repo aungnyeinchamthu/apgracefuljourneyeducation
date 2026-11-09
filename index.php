@@ -114,6 +114,10 @@ $coreValues = [
     ["title" => "Quality", "text" => "Accurate information and meticulous support throughout the journey."],
 ];
 
+// Keep the expanded workbook-driven version for client review.
+// Set to true to preview all countries; false restores the original curated section.
+$useExpandedUniversityList = false;
+
 $partnerships = [
     "Ireland" => [
         "South East Technological University (SETU)",
@@ -499,6 +503,16 @@ $partnerships = [
     ],
     
 ];
+
+if ($useExpandedUniversityList) {
+    require_once __DIR__ . '/university-list.php';
+    try {
+        $partnerships = loadUniversityPartnerships(UNIVERSITY_LIST_FILE);
+    } catch (RuntimeException $error) {
+        error_log($error->getMessage());
+        // Retain the curated list if the preview workbook cannot be loaded.
+    }
+}
 
 $testimonials = [
     [
@@ -2900,7 +2914,7 @@ img{
                         </button>
                     </li>
 
-                    <?php if ($country === 'Singapore'): ?>
+                    <?php if (!$useExpandedUniversityList && $country === 'Singapore'): ?>
                         <li class="nav-item partnership-download-wrap">
                             <a href="download-university-list.php"
                             class="partnership-download-btn">
@@ -2911,7 +2925,19 @@ img{
                     <?php endif; ?>
 
                 <?php $tabIndex++; endforeach; ?>
+                <?php if ($useExpandedUniversityList): ?>
+                <li class="nav-item partnership-download-wrap">
+                    <a href="download-university-list.php" class="partnership-download-btn">
+                        <i class="bi bi-download me-2"></i>
+                        Download All University List
+                    </a>
+                </li>
+                <?php endif; ?>
             </ul>
+
+            <?php if (!$partnerships): ?>
+                <p class="text-center">The university list is currently unavailable. Please contact us for details.</p>
+            <?php endif; ?>
 
             <div class="tab-content" id="partnerTabsContent">
                 <?php $paneIndex = 0; foreach ($partnerships as $country => $schools): ?>

@@ -1,5 +1,6 @@
 <?php
-$file = __DIR__ . '/documents/University_List.xlsx';
+require_once __DIR__ . '/university-list.php';
+$file = UNIVERSITY_LIST_FILE;
 
 if (!file_exists($file)) {
     http_response_code(404);
